@@ -7,7 +7,20 @@ const User = ({ userPromise }) => {
     e.preventDefault();
     const name = e.target.name.value;
     const email = e.target.email.value;
-    console.log(name, email);
+    const user = { name, email };
+    console.log(user);
+    // add post request to send data to server
+    fetch("http://localhost:3000/users", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(user),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+      });
   };
   return (
     <div>
